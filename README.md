@@ -1,7 +1,7 @@
-Monitor the Victron BMV-70x, optionally upload data to Domoticz as JSON via a LUA parser. Optionally log data to a CSV file.
+Monitor the Victron BMV-70x and optionally upload data to Domoticz as JSON via a LUA parser. Optionally log data to a CSV file.
 
 VE.Direct protocol, using Python v3
-Adapted from Victron's vedirect.py, with thanks also to https://github.com/karioja/vedirect/blob/master/vedirect.py
+Adapted from various versions of vedirect.py, particularly https://github.com/karioja/vedirect/blob/master/vedirect.py
 
 v2.0
 
