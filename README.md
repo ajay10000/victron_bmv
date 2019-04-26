@@ -1,4 +1,5 @@
 Monitor the Victron BMV-70x, optionally upload data to Domoticz as JSON via a LUA parser.
+
 Optionally log data to a CSV file. VE.Direct protocol, using Python v3
 Adapted from Victron's vedirect.py, with thanks also to https://github.com/karioja/vedirect/blob/master/vedirect.py
 
@@ -20,28 +21,36 @@ To resolve these issues, the 'input' processing routine has been changed slightl
   4. Clear the dictionary after a malformed packet, as these would gradually increase the size of the dictionary over time.
  
 Variables that should be reviewed or set by the user:
-logger_name = "vedirect"  : name used for log file names, messages, etc
 
-debug_level='debug'	      : debug options: DEBUG, INFO, WARNING, ERROR, CRITICAL
-                          : debug is verbose, error produces no error logs unless there is an error.
+logger_name = "vedirect"  
+  : name used for log file names, messages, etc
+
+debug_level='debug'	      
+  : debug options: DEBUG, INFO, WARNING, ERROR, CRITICAL
+  : debug is verbose, error produces no error logs unless there is an error.
                           
-domain="http://rpi3:8080" : enter your Domoticz IP address
+domain="http://rpi3:8080" 
+  : enter your Domoticz IP address
 
-parse_script = "ap_bmv.lua" : script to parse values to Domoticz. Lives in ~/domoticz/scripts/lua_parsers
+parse_script = "ap_bmv.lua" 
+  : script to parse values to Domoticz. Lives in ~/domoticz/scripts/lua_parsers
 
 port = '/dev/serial/by-id/usb-VictronEnergy_BV_VE_Direct_cable_VE3MQXH-if00-port0'
-                          : set to empty "" if parsing to Domoticz is not required.
-                          : Verify your serial port in Windows using Device Manager or in Linux by looking at /var/log/syslog when inserting cable OR ls -l /dev/serial/by-id/
-                          : See file /etc/udev/rules.d/99_usbdevices.rules for vedirectUSB device:
-                          : SUBSYSTEM=="tty", ATTRS{idVendor}=="0403", ATTRS{idProduct}=="6015", SYMLINK+="vedirectUSB"
-                          : Use direct name to prevent issues with USB port swapping, otherwise Windows i.e. 'COM5', Linux try '/dev/ttyUSB0'
+  : set to empty "" if parsing to Domoticz is not required.
+  : Verify your serial port in Windows using Device Manager or in Linux by looking at /var/log/syslog when inserting cable OR ls -l /dev/serial/by-id/
+  : See file /etc/udev/rules.d/99_usbdevices.rules for vedirectUSB device:
+  : SUBSYSTEM=="tty", ATTRS{idVendor}=="0403", ATTRS{idProduct}=="6015", SYMLINK+="vedirectUSB"
+  : Use direct name to prevent issues with USB port swapping, otherwise Windows i.e. 'COM5', Linux try '/dev/ttyUSB0'
 
-delay_time = 30           : script interval time in seconds
+delay_time = 30           
+  : script interval time in seconds
                           
 dataFile_columns = "Time," + "Volts," + "Amps," + "AHr," + "SOC" 
-                          : layout for csv data log file.  Set to empty "" to prevent datafile logging.
+  : layout for csv data log file.  Set to empty "" to prevent datafile logging.
                           
-log_dict = OrderedDict()  : Ordered dictionary, as we want to insert the values into the file as listed. Not required in Python 3.7+?
-                          : Instantiate dictionary, match dataFile_columns keys and order. Use BMV key names and required multiplier
+log_dict = OrderedDict()  
+  : Ordered dictionary, as we want to insert the values into the file as listed. Not required in Python 3.7+?
                           
 log_dict.update([("V", 0.001),("I", 0.001),("CE", 0.001),("SOC", 0.1)]) 
+  : Instantiate dictionary, match dataFile_columns keys and order. Use BMV key names and required multiplier
+  
