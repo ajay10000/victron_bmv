@@ -1,7 +1,7 @@
 Monitor the Victron BMV-70x and optionally upload data to Domoticz as JSON via a LUA parser. Optionally log data to a CSV file.
 
 VE.Direct protocol, using Python v3
-Adapted from various versions of vedirect.py, particularly https://github.com/karioja/vedirect/blob/master/vedirect.py
+Adapted from various versions of vedirect.py, particularly https://github.com/karioja/vedirect/blob/master/vedirect.py.  Many references here: https://www.victronenergy.com/live/open_source:start
 
 v2.0
 
