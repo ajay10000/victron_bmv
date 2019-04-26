@@ -1,6 +1,6 @@
 --lua script to parse json data to domoticz devices via their IDs
 --belongs in domoticz/scripts/lua_parsers
---called by url generated in python script vedirect_json.py 
+--called by url generated in python script vedirect.py 
 --example: http://domoticz_domain_orIP#:port#/json.htm?type=command&param=udevices&script=bmv_json.lua&data={"H2":0,"H3":0,"Alarm":"OFF","H7":46666,"V":54645,"FW":307,"H10":14,"H4":0,"H8":60004,"H11":0,"H12":0,"SOC":1000,"H1":-170364,"AR":0,"BMV":700,"CE":0,"P":29,"Relay":"OFF","I":530,"PID":"0x203","TTG":-1,"H9":0,"H17":26572,"H5":0,"H18":41698,"H6":-7695869}
 
 function parseJsonToDomoticz()
