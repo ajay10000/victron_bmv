@@ -1,7 +1,7 @@
 #!/usr/bin/python3
-# -*- coding: utf-8 -*-
-# Send the Victron BMV (702) values to Domoticz as json
-# Adapted from Victron's vedirect.py, thanks also to https://github.com/karioja/vedirect/blob/master/vedirect.py
+# vedirect.py version 2.0
+# Send Victron BMV (702) values to Domoticz as json and/or optionally log to CSV data file.
+# Adapted from various versions of vedirect.py, particularly https://github.com/karioja/vedirect/blob/master/vedirect.py
 
 import os, serial, json, requests, time, logging
 from collections import OrderedDict
