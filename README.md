@@ -1,9 +1,9 @@
-# victron_bmv
+# Victron BMV-70x logger (Domoticz and standalone) 
 Monitor the Victron BMV-70x and optionally upload data to Domoticz as JSON via a LUA parser. Optionally log data to a CSV file.
 Adapted from various versions of vedirect.py, particularly https://github.com/karioja/vedirect/blob/master/vedirect.py.  Many references here: https://www.victronenergy.com/live/open_source:start
 Uses VE.Direct protocol and updated to use Python v3
 
-## ap_bmv.lua
+## vedirect.lua
 Lua script to parse json data to domoticz devices via their IDs
 
 ### Installation
@@ -12,7 +12,7 @@ Lua script to parse json data to domoticz devices via their IDs
 * Create BMV devices in Domoticz using 'Create Virtual Sensors' button in the Dummy hardware
 Example: BMV Volts, BMV Amps, BMV Power, BMV SOC, BMV AHr
 * Go to the Devices page and filter for 'BMV' to make them easier to spot.
-* Note the Domoticz index (Idx) for each device and update ap_bmv.lua for each item in the array.
+* Note the Domoticz index (Idx) for each device and update vedirect.lua for each item in the array.
 
 This script is triggered by a URL generated in the python script vedirect.py (see below).  When the BMV python script sends a command to Domoticz, formatted as a JSON URL, this Lua script intercepts and parses the values to Domoticz. The values may be corrected with multipliers.
 
@@ -30,7 +30,7 @@ Adapted from various versions of vedirect.py, particularly https://github.com/ka
 ### Installation
 * Install in your chosen folder i.e. /monitor/bmv/vedirect.py
 * Set up to run at system startup.
-Example: create /lib/systemd/system/ap_bmv.service
+Example: create /lib/systemd/system/victron.service
 
 [Unit]
 Description=Victron BMV logging service
