@@ -8,9 +8,9 @@ from collections import OrderedDict
 
 # Begin user editable variables
 logger_name = "vedirect"  #used for log file names, messages, etc
-debug_level='debug'	# debug options DEBUG, INFO, WARNING, ERROR, CRITICAL
-domain="http://rpi3:8080"
-parse_script = "ap_bmv.lua" # script to parse values to Domoticz. Lives in ~/domoticz/scripts/lua_parsers
+debug_level='info'	# debug options DEBUG, INFO, WARNING, ERROR, CRITICAL
+domain="http://rpi4:8080"
+parse_script = "bmv.lua" # script to parse values to Domoticz. Lives in ~/domoticz/scripts/lua_parsers
 # Verify port in Windows using Device Manager or in Linux by looking at /var/log/syslog when inserting cable OR ls -l /dev/serial/by-id/  
 # See file /etc/udev/rules.d/99_usbdevices.rules for vedirectUSB device:
 # SUBSYSTEM=="tty", ATTRS{idVendor}=="0403", ATTRS{idProduct}=="6015", SYMLINK+="vedirectUSB"
@@ -195,12 +195,12 @@ def do_every(period,func,*args):
   while True:
     logger.debug('Callback started')
     func(*args)  # Run the function
-    #logger.debug('Flush serial buffers')
-    #ve.flush_buffers()
-    #time.sleep(1)
+    logger.debug('Flush serial buffers')
+    ve.flush_buffers()
+    time.sleep(1)
     logger.debug('{}'.format('Sleeping for ' + str(delay_time) + 's\r\n'))
     time.sleep(next(g))
     
 if __name__ == '__main__':
-  ve = vedirect(port,15)  # timeout 15?
+  ve = vedirect(port,0)  # timeout 15?
   do_every(delay_time, ve.read_data_callback, send_json)
